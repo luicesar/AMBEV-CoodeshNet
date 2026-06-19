@@ -1,0 +1,9 @@
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CancelSaleItem;
+
+public class CancelSaleItemResponse
+{
+    public Guid SaleId { get; set; }
+    public Guid ItemId { get; set; }
+    public bool IsCancelled { get; set; }
+    public decimal NewSaleTotal { get; set; }
+}
