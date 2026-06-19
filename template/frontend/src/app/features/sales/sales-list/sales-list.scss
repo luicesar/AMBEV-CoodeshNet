@@ -1,0 +1,64 @@
+.page { padding: 1.5rem; max-width: 1200px; margin: 0 auto; }
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #333;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+
+  h1 { margin: 0; font-size: 1.2rem; color: #f5a623; }
+  .header-right { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; }
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  h2 { margin: 0; }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+
+  th { background: #f5a623; color: white; padding: 0.75rem; text-align: left; font-weight: 600; font-size: 0.85rem; }
+  td { padding: 0.7rem; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+  tr:last-child td { border-bottom: none; }
+  tr.cancelled td { opacity: 0.6; }
+}
+
+.chip {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  &.active { background: #e8f5e9; color: #2e7d32; }
+  &.cancelled { background: #fce4ec; color: #c62828; }
+}
+
+.btn-primary { background: #f5a623; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 4px; cursor: pointer; font-size: 0.95rem; &:hover { background: #d4891e; } }
+.btn-outline { background: transparent; color: white; border: 1px solid white; padding: 0.4rem 0.9rem; border-radius: 4px; cursor: pointer; &:hover { background: rgba(255,255,255,0.1); } }
+.btn-sm { background: #f5a623; color: white; border: none; padding: 0.3rem 0.7rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; &:hover { background: #d4891e; } }
+
+.badge { background: #f5a623; color: white; border-radius: 12px; padding: 0.15rem 0.6rem; font-size: 0.8rem; margin-left: 0.5rem; }
+.error { background: #fee; color: #c00; padding: 0.75rem; border-radius: 4px; margin-bottom: 1rem; }
+.loading { color: #666; padding: 2rem; text-align: center; }
+.empty { color: #999; text-align: center; padding: 2rem; }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  button { background: #f5a623; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; &:disabled { opacity: 0.4; cursor: not-allowed; } }
+}

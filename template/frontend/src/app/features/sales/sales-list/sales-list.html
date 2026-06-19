@@ -1,0 +1,58 @@
+<div class="page">
+  <header>
+    <h1>DeveloperStore — Vendas</h1>
+    <div class="header-right">
+      <span>{{ email }}</span>
+      <button class="btn-outline" (click)="logout()">Sair</button>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <h2>Lista de Vendas <span class="badge">{{ totalCount }}</span></h2>
+    <button class="btn-primary" (click)="goToCreate()">+ Nova Venda</button>
+  </div>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+  <div class="loading" *ngIf="loading">Carregando...</div>
+
+  <table *ngIf="!loading && sales.length > 0">
+    <thead>
+      <tr>
+        <th>Número</th>
+        <th>Data</th>
+        <th>Cliente</th>
+        <th>Filial</th>
+        <th>Itens</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sale of sales" [class.cancelled]="sale.isCancelled">
+        <td>{{ sale.saleNumber }}</td>
+        <td>{{ sale.saleDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ sale.customerName }}</td>
+        <td>{{ sale.branchName }}</td>
+        <td>{{ sale.itemCount }}</td>
+        <td>{{ sale.totalAmount | currency:'BRL' }}</td>
+        <td>
+          <span [class]="sale.isCancelled ? 'chip cancelled' : 'chip active'">
+            {{ sale.isCancelled ? 'Cancelada' : 'Ativa' }}
+          </span>
+        </td>
+        <td>
+          <button class="btn-sm" (click)="goToDetail(sale.id)">Ver</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="empty" *ngIf="!loading && sales.length === 0">Nenhuma venda encontrada.</p>
+
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button [disabled]="page === 1" (click)="prevPage()">‹ Anterior</button>
+    <span>Página {{ page }} de {{ totalPages }}</span>
+    <button [disabled]="page === totalPages" (click)="nextPage()">Próxima ›</button>
+  </div>
+</div>

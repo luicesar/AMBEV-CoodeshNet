@@ -1,0 +1,72 @@
+<div class="page">
+  <header>
+    <button class="btn-outline" (click)="goBack()">← Voltar</button>
+    <h1>Detalhe da Venda</h1>
+    <div class="header-actions" *ngIf="sale && !sale.isCancelled">
+      <button class="btn-primary" (click)="goToEdit()" [disabled]="actionLoading">Editar</button>
+      <button class="btn-danger" (click)="cancelSale()" [disabled]="actionLoading">Cancelar Venda</button>
+    </div>
+  </header>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+  <div class="loading" *ngIf="loading">Carregando...</div>
+
+  <ng-container *ngIf="sale && !loading">
+    <div class="status-banner" [class.cancelled]="sale.isCancelled" [class.active]="!sale.isCancelled">
+      {{ sale.isCancelled ? '⛔ VENDA CANCELADA' : '✅ Venda Ativa' }}
+    </div>
+
+    <div class="card">
+      <h3>Informações Gerais</h3>
+      <div class="info-grid">
+        <div class="info-item"><span>Número</span><strong>{{ sale.saleNumber }}</strong></div>
+        <div class="info-item"><span>Data</span><strong>{{ sale.saleDate | date:'dd/MM/yyyy' }}</strong></div>
+        <div class="info-item"><span>Cliente</span><strong>{{ sale.customerName }}</strong></div>
+        <div class="info-item"><span>Filial</span><strong>{{ sale.branchName }}</strong></div>
+        <div class="info-item"><span>Total</span><strong class="total">{{ sale.totalAmount | currency:'BRL' }}</strong></div>
+        <div class="info-item"><span>Criada em</span><strong>{{ sale.createdAt | date:'dd/MM/yyyy HH:mm' }}</strong></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Itens</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Qtd</th>
+            <th>Preço Unit.</th>
+            <th>Desconto</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th *ngIf="!sale.isCancelled">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of sale.items" [class.item-cancelled]="item.isCancelled">
+            <td>{{ item.productName }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unitPrice | currency:'BRL' }}</td>
+            <td>{{ discountLabel(item.discount) }}</td>
+            <td>{{ item.totalAmount | currency:'BRL' }}</td>
+            <td>
+              <span [class]="item.isCancelled ? 'chip cancelled' : 'chip active'">
+                {{ item.isCancelled ? 'Cancelado' : 'Ativo' }}
+              </span>
+            </td>
+            <td *ngIf="!sale.isCancelled">
+              <button class="btn-sm-danger" *ngIf="!item.isCancelled"
+                      (click)="cancelItem(item.id)" [disabled]="actionLoading">
+                Cancelar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="delete-zone" *ngIf="!sale.isCancelled">
+      <button class="btn-delete" (click)="deleteSale()">🗑 Excluir Venda</button>
+    </div>
+  </ng-container>
+</div>
