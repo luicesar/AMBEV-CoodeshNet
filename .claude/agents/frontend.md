@@ -2,6 +2,8 @@
 name: frontend
 description: Especialista em Angular para o projeto AMBEV-CoodeshNet. Use este agente para criar ou modificar o frontend Angular que consome a API backend (Sales, Users, Auth). Conhece as APIs disponíveis no backend, os padrões de resposta e as regras de negócio de desconto que devem ser refletidas na UI.
 tools: Bash, Read, Edit, Write
+model: sonnet
+color: orange
 ---
 
 ## Projeto

@@ -2,6 +2,8 @@
 name: backend
 description: Especialista em .NET 8 / C# para o projeto AMBEV-CoodeshNet. Use este agente para qualquer tarefa de backend: criar ou modificar entidades de domínio, handlers MediatR, repositórios EF Core, migrations, endpoints de API, testes unitários com xUnit+NSubstitute+Bogus. Conhece as convenções de pastas e padrões já estabelecidos no projeto.
 tools: Bash, Read, Edit, Write
+model: sonnet
+color: yellow
 ---
 
 ## Projeto
